@@ -1,4 +1,4 @@
-# iac-misconfig-hunter
+﻿# iac-misconfig-hunter
 
 How well do Checkov, Trivy, KICS and kube-linter find **35 known misconfigurations** in
 deliberately vulnerable Terraform and Kubernetes code? This repository measures it, then fixes
@@ -64,5 +64,6 @@ See [`SOURCES.md`](SOURCES.md). Code: MIT.
 
 ## Author
 
-**Youssef Bouaouina** — [github.com/youssefbouaouina](https://github.com/youssefbouaouina) ·
+**Youssef Bouaouina** --- [github.com/youssefbouaouina](https://github.com/youssefbouaouina) --
 [portfolio](https://youssefbouaouina.github.io/)
+

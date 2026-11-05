@@ -26,8 +26,10 @@ docker run --rm -v "$ROOT:/src" checkmarx/kics:v2.2.0 scan \
   -p "/src/$K8S" -o /src/results/kics-k8s --report-formats json --no-progress --silent || true
 # KICS exits non-zero when it finds issues, so a missing report must fail here
 # instead of silently producing a 0/0 result.
-for kind in terraform kubernetes; do
-  report=$(find "results/kics-$kind" -name '*.json' | head -n 1)
+for pair in "tf:terraform" "k8s:kubernetes"; do
+  dir="${pair%%:*}"
+  kind="${pair##*:}"
+  report=$(find "results/kics-$dir" -name '*.json' | head -n 1)
   if [ -z "$report" ]; then
     echo "KICS produced no report for $kind" >&2
     exit 1

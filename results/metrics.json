@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T03:22:49+00:00",
+  "generated_at": "2026-11-05T03:11:59+00:00",
   "terragoat_commit": "729f8da62c6a85ce4af5ad3d123de97776d954c4",
   "items_total": 35,
   "scanners": {
@@ -19,16 +19,16 @@
     },
     "trivy": {
       "terraform": {
-        "detected": 0,
+        "detected": 15,
         "total": 20,
-        "recall": 0.0,
-        "findings": 0
+        "recall": 0.75,
+        "findings": 115
       },
       "kubernetes": {
-        "detected": 0,
+        "detected": 15,
         "total": 15,
-        "recall": 0.0,
-        "findings": 0
+        "recall": 1.0,
+        "findings": 247
       }
     },
     "kics": {
@@ -53,18 +53,18 @@
         "findings": 0
       },
       "kubernetes": {
-        "detected": 11,
+        "detected": 0,
         "total": 15,
-        "recall": 0.7333,
-        "findings": 70
+        "recall": 0.0,
+        "findings": 0
       }
     }
   },
   "overlap": {
-    "checkov": 21,
-    "checkov+kube-linter": 8,
-    "kube-linter": 3,
-    "none": 3
+    "checkov+trivy": 26,
+    "trivy": 4,
+    "checkov": 3,
+    "none": 2
   },
   "items": [
     {
@@ -74,7 +74,8 @@
       "resource": "aws_s3_bucket.data",
       "category": "public_bucket",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -85,7 +86,8 @@
       "resource": "aws_s3_bucket.data",
       "category": "unencrypted_storage",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -96,7 +98,8 @@
       "resource": "aws_s3_bucket.data",
       "category": "missing_logging",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -107,7 +110,8 @@
       "resource": "aws_s3_bucket.data",
       "category": "missing_versioning",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -118,7 +122,8 @@
       "resource": "aws_s3_bucket.financials",
       "category": "unencrypted_storage",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -129,7 +134,8 @@
       "resource": "aws_s3_bucket.financials",
       "category": "missing_logging",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -140,7 +146,8 @@
       "resource": "aws_s3_bucket.operations",
       "category": "unencrypted_storage",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -151,7 +158,8 @@
       "resource": "aws_s3_bucket.operations",
       "category": "missing_logging",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -162,7 +170,8 @@
       "resource": "aws_s3_bucket.data_science",
       "category": "unencrypted_storage",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -173,7 +182,8 @@
       "resource": "aws_instance.web_host",
       "category": "plaintext_secret",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -184,7 +194,8 @@
       "resource": "aws_ebs_volume.web_host_storage",
       "category": "unencrypted_storage",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -206,7 +217,8 @@
       "resource": "aws_security_group.web-node",
       "category": "open_ssh",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -237,7 +249,8 @@
       "resource": "aws_rds_cluster.app1-rds-cluster",
       "category": "missing_backup",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -248,7 +261,8 @@
       "resource": "aws_elasticsearch_domain.monitoring-framework",
       "category": "unencrypted_storage",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -268,7 +282,8 @@
       "resource": "aws_eks_cluster.eks_cluster",
       "category": "public_endpoint",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -291,7 +306,7 @@
       "category": "privileged",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -301,8 +316,10 @@
       "file": "tests/k8s/02-hostpath.yaml",
       "resource": "hostpath-pod",
       "category": "hostpath",
-      "found_by": [],
-      "found": false
+      "found_by": [
+        "trivy"
+      ],
+      "found": true
     },
     {
       "id": "K03",
@@ -312,7 +329,7 @@
       "category": "hostnetwork",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -324,7 +341,7 @@
       "category": "latest_tag",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -336,7 +353,7 @@
       "category": "missing_limits",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -347,7 +364,7 @@
       "resource": "root-user-pod",
       "category": "root_user",
       "found_by": [
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -359,7 +376,7 @@
       "category": "writable_rootfs",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -371,7 +388,7 @@
       "category": "added_capabilities",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -382,7 +399,8 @@
       "resource": "no-seccomp-pod",
       "category": "missing_seccomp",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -393,7 +411,8 @@
       "resource": "automount-token-pod",
       "category": "service_account_token",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     },
@@ -405,7 +424,7 @@
       "category": "privilege_escalation",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -416,7 +435,7 @@
       "resource": "hostpid-pod",
       "category": "hostpid",
       "found_by": [
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -428,7 +447,7 @@
       "category": "hostipc",
       "found_by": [
         "checkov",
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -439,7 +458,7 @@
       "resource": "docker-sock-pod",
       "category": "docker_sock",
       "found_by": [
-        "kube-linter"
+        "trivy"
       ],
       "found": true
     },
@@ -450,7 +469,8 @@
       "resource": "default-namespace-pod",
       "category": "default_namespace",
       "found_by": [
-        "checkov"
+        "checkov",
+        "trivy"
       ],
       "found": true
     }
@@ -465,10 +485,26 @@
       "line": 1
     },
     {
+      "item": "TF01",
+      "scanner": "trivy",
+      "check": "S3 Access block should block public ACL",
+      "file": "s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
       "item": "TF02",
       "scanner": "checkov",
       "check": "Ensure that S3 buckets are encrypted with KMS by default",
       "file": "/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
+      "item": "TF02",
+      "scanner": "trivy",
+      "check": "S3 encryption should use Customer Managed Keys",
+      "file": "s3.tf",
       "resource": "aws_s3_bucket.data",
       "line": 1
     },
@@ -481,10 +517,26 @@
       "line": 1
     },
     {
+      "item": "TF03",
+      "scanner": "trivy",
+      "check": "S3 Bucket Logging",
+      "file": "s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
       "item": "TF04",
       "scanner": "checkov",
       "check": "Ensure all data stored in the S3 bucket have versioning enabled",
       "file": "/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
+      "item": "TF04",
+      "scanner": "trivy",
+      "check": "S3 Data should be versioned",
+      "file": "s3.tf",
       "resource": "aws_s3_bucket.data",
       "line": 1
     },
@@ -497,10 +549,26 @@
       "line": 42
     },
     {
+      "item": "TF05",
+      "scanner": "trivy",
+      "check": "S3 encryption should use Customer Managed Keys",
+      "file": "s3.tf",
+      "resource": "aws_s3_bucket.financials",
+      "line": 42
+    },
+    {
       "item": "TF06",
       "scanner": "checkov",
       "check": "Ensure the S3 bucket has access logging enabled",
       "file": "/s3.tf",
+      "resource": "aws_s3_bucket.financials",
+      "line": 42
+    },
+    {
+      "item": "TF06",
+      "scanner": "trivy",
+      "check": "S3 Bucket Logging",
+      "file": "s3.tf",
       "resource": "aws_s3_bucket.financials",
       "line": 42
     },
@@ -513,10 +581,26 @@
       "line": 65
     },
     {
+      "item": "TF07",
+      "scanner": "trivy",
+      "check": "S3 encryption should use Customer Managed Keys",
+      "file": "s3.tf",
+      "resource": "aws_s3_bucket.operations",
+      "line": 65
+    },
+    {
       "item": "TF08",
       "scanner": "checkov",
       "check": "Ensure the S3 bucket has access logging enabled",
       "file": "/s3.tf",
+      "resource": "aws_s3_bucket.operations",
+      "line": 65
+    },
+    {
+      "item": "TF08",
+      "scanner": "trivy",
+      "check": "S3 Bucket Logging",
+      "file": "s3.tf",
       "resource": "aws_s3_bucket.operations",
       "line": 65
     },
@@ -529,6 +613,14 @@
       "line": 89
     },
     {
+      "item": "TF09",
+      "scanner": "trivy",
+      "check": "S3 encryption should use Customer Managed Keys",
+      "file": "s3.tf",
+      "resource": "aws_s3_bucket.data_science",
+      "line": 89
+    },
+    {
       "item": "TF10",
       "scanner": "checkov",
       "check": "Ensure no hard-coded secrets exist in EC2 user data",
@@ -537,10 +629,26 @@
       "line": 1
     },
     {
+      "item": "TF10",
+      "scanner": "trivy",
+      "check": "User data for EC2 instances must not contain sensitive AWS keys",
+      "file": "ec2.tf",
+      "resource": "aws_instance.web_host",
+      "line": 9
+    },
+    {
       "item": "TF11",
       "scanner": "checkov",
-      "check": "Ensure all data stored in the EBS is securely encrypted",
+      "check": "Ensure EBS Volume is encrypted by KMS using a customer managed Key (CMK)",
       "file": "/ec2.tf",
+      "resource": "aws_ebs_volume.web_host_storage",
+      "line": 34
+    },
+    {
+      "item": "TF11",
+      "scanner": "trivy",
+      "check": "EBS volumes must be encrypted",
+      "file": "ec2.tf",
       "resource": "aws_ebs_volume.web_host_storage",
       "line": 34
     },
@@ -561,6 +669,14 @@
       "line": 77
     },
     {
+      "item": "TF13",
+      "scanner": "trivy",
+      "check": "Security groups should not allow unrestricted ingress to SSH or RDP from any IP address.",
+      "file": "ec2.tf",
+      "resource": "aws_security_group.web-node",
+      "line": 94
+    },
+    {
       "item": "TF15",
       "scanner": "checkov",
       "check": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
@@ -577,20 +693,44 @@
       "line": 1
     },
     {
+      "item": "TF16",
+      "scanner": "trivy",
+      "check": "RDS Cluster and RDS instance should have backup retention longer than default 1 day",
+      "file": "rds.tf",
+      "resource": "aws_rds_cluster.app1-rds-cluster",
+      "line": 4
+    },
+    {
       "item": "TF17",
       "scanner": "checkov",
-      "check": "Ensure all data stored in the Elasticsearch is securely encrypted at rest",
+      "check": "Ensure all data stored in the Elasticsearch is encrypted with a CMK",
       "file": "/es.tf",
+      "resource": "aws_elasticsearch_domain.monitoring-framework",
+      "line": 1
+    },
+    {
+      "item": "TF17",
+      "scanner": "trivy",
+      "check": "Elasticsearch domain uses plaintext traffic for node to node communication.",
+      "file": "es.tf",
       "resource": "aws_elasticsearch_domain.monitoring-framework",
       "line": 1
     },
     {
       "item": "TF19",
       "scanner": "checkov",
-      "check": "Ensure Amazon EKS public endpoint disabled",
+      "check": "Ensure Amazon EKS public endpoint not accessible to 0.0.0.0/0",
       "file": "/eks.tf",
       "resource": "aws_eks_cluster.eks_cluster",
       "line": 118
+    },
+    {
+      "item": "TF19",
+      "scanner": "trivy",
+      "check": "EKS Clusters should have the public access disabled",
+      "file": "eks.tf",
+      "resource": "aws_eks_cluster.eks_cluster",
+      "line": 122
     },
     {
       "item": "TF20",
@@ -610,11 +750,19 @@
     },
     {
       "item": "K01",
-      "scanner": "kube-linter",
-      "check": "privilege-escalation-container",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/01-privileged.yaml",
-      "resource": "privileged-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "01-privileged.yaml",
+      "resource": "",
+      "line": 8
+    },
+    {
+      "item": "K02",
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "02-hostpath.yaml",
+      "resource": "",
+      "line": 8
     },
     {
       "item": "K03",
@@ -626,11 +774,11 @@
     },
     {
       "item": "K03",
-      "scanner": "kube-linter",
-      "check": "host-network",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/03-hostnetwork.yaml",
-      "resource": "hostnetwork-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "03-hostnetwork.yaml",
+      "resource": "",
+      "line": 9
     },
     {
       "item": "K04",
@@ -642,11 +790,11 @@
     },
     {
       "item": "K04",
-      "scanner": "kube-linter",
-      "check": "latest-tag",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/04-latest-tag.yaml",
-      "resource": "latest-tag-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "04-latest-tag.yaml",
+      "resource": "",
+      "line": 8
     },
     {
       "item": "K05",
@@ -658,19 +806,19 @@
     },
     {
       "item": "K05",
-      "scanner": "kube-linter",
-      "check": "unset-memory-requirements",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/05-no-limits.yaml",
-      "resource": "no-limits-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "05-no-limits.yaml",
+      "resource": "",
+      "line": 8
     },
     {
       "item": "K06",
-      "scanner": "kube-linter",
-      "check": "run-as-non-root",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/06-root-user.yaml",
-      "resource": "root-user-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Runs as root user",
+      "file": "06-root-user.yaml",
+      "resource": "",
+      "line": 8
     },
     {
       "item": "K07",
@@ -682,27 +830,27 @@
     },
     {
       "item": "K07",
-      "scanner": "kube-linter",
-      "check": "no-read-only-root-fs",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/07-writable-rootfs.yaml",
-      "resource": "writable-rootfs-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Root file system is not read-only",
+      "file": "07-writable-rootfs.yaml",
+      "resource": "",
+      "line": 8
     },
     {
       "item": "K08",
       "scanner": "checkov",
-      "check": "Minimize the admission of containers with added capability",
+      "check": "Minimize the admission of containers with the NET_RAW capability",
       "file": "/tests/k8s/08-added-capabilities.yaml",
       "resource": "Pod.demo.capabilities-pod",
       "line": 1
     },
     {
       "item": "K08",
-      "scanner": "kube-linter",
-      "check": "drop-net-raw-capability",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/08-added-capabilities.yaml",
-      "resource": "capabilities-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "08-added-capabilities.yaml",
+      "resource": "",
+      "line": 8
     },
     {
       "item": "K09",
@@ -713,12 +861,28 @@
       "line": 1
     },
     {
+      "item": "K09",
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "09-no-seccomp.yaml",
+      "resource": "",
+      "line": 8
+    },
+    {
       "item": "K10",
       "scanner": "checkov",
       "check": "Ensure that Service Account Tokens are only mounted where necessary",
       "file": "/tests/k8s/10-automount-token.yaml",
       "resource": "Pod.demo.automount-token-pod",
       "line": 1
+    },
+    {
+      "item": "K10",
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "10-automount-token.yaml",
+      "resource": "",
+      "line": 9
     },
     {
       "item": "K11",
@@ -730,19 +894,19 @@
     },
     {
       "item": "K11",
-      "scanner": "kube-linter",
-      "check": "privilege-escalation-container",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/11-privilege-escalation.yaml",
-      "resource": "privilege-escalation-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "11-privilege-escalation.yaml",
+      "resource": "",
+      "line": 8
     },
     {
       "item": "K12",
-      "scanner": "kube-linter",
-      "check": "host-pid",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/12-hostpid.yaml",
-      "resource": "hostpid-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "12-hostpid.yaml",
+      "resource": "",
+      "line": 9
     },
     {
       "item": "K13",
@@ -754,19 +918,19 @@
     },
     {
       "item": "K13",
-      "scanner": "kube-linter",
-      "check": "host-ipc",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/13-hostipc.yaml",
-      "resource": "hostipc-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "13-hostipc.yaml",
+      "resource": "",
+      "line": 9
     },
     {
       "item": "K14",
-      "scanner": "kube-linter",
-      "check": "docker-sock",
-      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/14-docker-sock.yaml",
-      "resource": "docker-sock-pod",
-      "line": null
+      "scanner": "trivy",
+      "check": "hostPath volume mounted with docker.sock",
+      "file": "14-docker-sock.yaml",
+      "resource": "",
+      "line": 6
     },
     {
       "item": "K15",
@@ -775,6 +939,14 @@
       "file": "/tests/k8s/15-default-namespace.yaml",
       "resource": "Pod.default.default-namespace-pod",
       "line": 1
+    },
+    {
+      "item": "K15",
+      "scanner": "trivy",
+      "check": "Can elevate its own privileges",
+      "file": "15-default-namespace.yaml",
+      "resource": "",
+      "line": 7
     }
   ],
   "fixed": {
