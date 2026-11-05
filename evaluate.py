@@ -18,7 +18,7 @@ from __future__ import annotations
 import csv
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
@@ -124,7 +124,12 @@ def evaluate() -> dict:
                     "findings": len(findings[(name, target)]),
                 }
             else:
-                per_target[target] = {"detected": 0, "total": len(subset), "recall": None, "findings": 0}
+                per_target[target] = {
+                    "detected": 0,
+                    "total": len(subset),
+                    "recall": None,
+                    "findings": 0,
+                }
         scanners_metrics[name] = per_target
 
     overlap: dict[str, int] = {}
@@ -144,7 +149,7 @@ def evaluate() -> dict:
         fixed["total_after"] = len(fixed_findings)
 
     return {
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "terragoat_commit": expected["terragoat_commit"],
         "items_total": len(items),
         "scanners": scanners_metrics,
@@ -175,14 +180,16 @@ def write(metrics: dict) -> None:
         "",
         "## Recall",
         "",
-        f"| Scanner | Terraform ({tf_total} items) | Kubernetes ({k8s_total} items) | Findings (TF / K8s) |",
+        f"| Scanner | Terraform ({tf_total}) | Kubernetes ({k8s_total}) | Findings (TF / K8s) |",
         "|---|---|---|---|",
     ]
     for name, per_target in metrics["scanners"].items():
         tf = per_target["terraform"]
         k8s = per_target["kubernetes"]
         tf_cell = (
-            f"{tf['detected']}/{tf['total']} ({tf['recall']:.1%})" if tf["recall"] is not None else "n/a"
+            f"{tf['detected']}/{tf['total']} ({tf['recall']:.1%})"
+            if tf["recall"] is not None
+            else "n/a"
         )
         k8s_cell = (
             f"{k8s['detected']}/{k8s['total']} ({k8s['recall']:.1%})"
@@ -235,7 +242,8 @@ def write(metrics: dict) -> None:
         "python evaluate.py",
         "```",
         "",
-        "Matching is keyword-based (`mapping.yaml`). Every match is listed in `results/matches.csv`",
+        "Matching is keyword-based (`mapping.yaml`). Every match is listed in",
+        "`results/matches.csv`",
         "with the scanner check that produced it, so the numbers can be audited line by line.",
         "",
     ]

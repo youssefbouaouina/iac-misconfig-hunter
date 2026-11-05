@@ -109,9 +109,13 @@ def test_item_found_requires_resource_for_terraform(tmp_path):
         "resource": "aws_s3_bucket.data",
         "category": "unencrypted_storage",
     }
-    finding = scanner.Finding("checkov", "terraform/aws/s3.tf", "aws_s3_bucket.logs", 3, "encryption", "")
+    finding = scanner.Finding(
+        "checkov", "terraform/aws/s3.tf", "aws_s3_bucket.logs", 3, "encryption", ""
+    )
     assert not evaluate.item_found(item, finding, ["encrypt"])
-    finding = scanner.Finding("checkov", "terraform/aws/s3.tf", "aws_s3_bucket.data", 3, "encryption", "")
+    finding = scanner.Finding(
+        "checkov", "terraform/aws/s3.tf", "aws_s3_bucket.data", 3, "encryption", ""
+    )
     assert evaluate.item_found(item, finding, ["encrypt"])
 
 

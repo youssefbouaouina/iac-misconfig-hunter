@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT))
 
 import evaluate  # noqa: E402
 import scanner  # noqa: E402
+
 RESULTS = ROOT / "results"
 FIXED_IDS = [
     "TF01", "TF02", "TF03", "TF04", "TF05", "TF06", "TF07",
