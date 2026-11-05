@@ -1,0 +1,192 @@
+# Ground truth for the IaC scanner evaluation.
+#
+# Written by reading the TerraGoat source (its own comments list the intended
+# weaknesses) and the deliberately vulnerable Kubernetes manifests in tests/k8s/.
+# Committed BEFORE the first scanner run.
+#
+# An item counts as found by a scanner when that scanner reports at least one
+# finding on the same file (or resource name, when the format has no file) whose
+# check title/message matches one of the category keywords in mapping.yaml.
+version: 1
+frozen_on: "2026-11-05"
+terragoat_commit: 729f8da62c6a85ce4af5ad3d123de97776d954c4
+
+items:
+  # ---- Terraform (TerraGoat, terraform/aws) ----
+  - id: TF01
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.data
+    category: public_bucket
+  - id: TF02
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.data
+    category: unencrypted_storage
+  - id: TF03
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.data
+    category: missing_logging
+  - id: TF04
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.data
+    category: missing_versioning
+  - id: TF05
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.financials
+    category: unencrypted_storage
+  - id: TF06
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.financials
+    category: missing_logging
+  - id: TF07
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.operations
+    category: unencrypted_storage
+  - id: TF08
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.operations
+    category: missing_logging
+  - id: TF09
+    target: terraform
+    file: terraform/aws/s3.tf
+    resource: aws_s3_bucket.data_science
+    category: unencrypted_storage
+  - id: TF10
+    target: terraform
+    file: terraform/aws/ec2.tf
+    resource: aws_instance.web_host
+    category: plaintext_secret
+  - id: TF11
+    target: terraform
+    file: terraform/aws/ec2.tf
+    resource: aws_ebs_volume.web_host_storage
+    category: unencrypted_storage
+  - id: TF12
+    target: terraform
+    file: terraform/aws/ec2.tf
+    resource: aws_security_group.web-node
+    category: open_security_group
+  - id: TF13
+    target: terraform
+    file: terraform/aws/ec2.tf
+    resource: aws_security_group.web-node
+    category: open_ssh
+  - id: TF14
+    target: terraform
+    file: terraform/aws/iam.tf
+    resource: aws_iam_access_key.user
+    category: long_lived_access_key
+  - id: TF15
+    target: terraform
+    file: terraform/aws/iam.tf
+    resource: aws_iam_user_policy.userpolicy
+    category: iam_wildcard
+  - id: TF16
+    target: terraform
+    file: terraform/aws/rds.tf
+    resource: aws_rds_cluster.app1-rds-cluster
+    category: missing_backup
+  - id: TF17
+    target: terraform
+    file: terraform/aws/es.tf
+    resource: aws_elasticsearch_domain.monitoring-framework
+    category: unencrypted_storage
+  - id: TF18
+    target: terraform
+    file: terraform/aws/es.tf
+    resource: aws_elasticsearch_domain_policy.monitoring-framework-policy
+    category: public_resource_policy
+  - id: TF19
+    target: terraform
+    file: terraform/aws/eks.tf
+    resource: aws_eks_cluster.eks_cluster
+    category: public_endpoint
+  - id: TF20
+    target: terraform
+    file: terraform/aws/elb.tf
+    resource: aws_elb.weblb
+    category: missing_logging
+
+  # ---- Kubernetes (our deliberately vulnerable manifests) ----
+  - id: K01
+    target: kubernetes
+    file: tests/k8s/01-privileged.yaml
+    resource: privileged-pod
+    category: privileged
+  - id: K02
+    target: kubernetes
+    file: tests/k8s/02-hostpath.yaml
+    resource: hostpath-pod
+    category: hostpath
+  - id: K03
+    target: kubernetes
+    file: tests/k8s/03-hostnetwork.yaml
+    resource: hostnetwork-pod
+    category: hostnetwork
+  - id: K04
+    target: kubernetes
+    file: tests/k8s/04-latest-tag.yaml
+    resource: latest-tag-pod
+    category: latest_tag
+  - id: K05
+    target: kubernetes
+    file: tests/k8s/05-no-limits.yaml
+    resource: no-limits-pod
+    category: missing_limits
+  - id: K06
+    target: kubernetes
+    file: tests/k8s/06-root-user.yaml
+    resource: root-user-pod
+    category: root_user
+  - id: K07
+    target: kubernetes
+    file: tests/k8s/07-writable-rootfs.yaml
+    resource: writable-rootfs-pod
+    category: writable_rootfs
+  - id: K08
+    target: kubernetes
+    file: tests/k8s/08-added-capabilities.yaml
+    resource: capabilities-pod
+    category: added_capabilities
+  - id: K09
+    target: kubernetes
+    file: tests/k8s/09-no-seccomp.yaml
+    resource: no-seccomp-pod
+    category: missing_seccomp
+  - id: K10
+    target: kubernetes
+    file: tests/k8s/10-automount-token.yaml
+    resource: automount-token-pod
+    category: service_account_token
+  - id: K11
+    target: kubernetes
+    file: tests/k8s/11-privilege-escalation.yaml
+    resource: privilege-escalation-pod
+    category: privilege_escalation
+  - id: K12
+    target: kubernetes
+    file: tests/k8s/12-hostpid.yaml
+    resource: hostpid-pod
+    category: hostpid
+  - id: K13
+    target: kubernetes
+    file: tests/k8s/13-hostipc.yaml
+    resource: hostipc-pod
+    category: hostipc
+  - id: K14
+    target: kubernetes
+    file: tests/k8s/14-docker-sock.yaml
+    resource: docker-sock-pod
+    category: docker_sock
+  - id: K15
+    target: kubernetes
+    file: tests/k8s/15-default-namespace.yaml
+    resource: default-namespace-pod
+    category: default_namespace
