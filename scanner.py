@@ -108,14 +108,17 @@ def _kube_linter(data) -> list[Finding]:
         diagnostic = report.get("Diagnostic") or {}
         obj = report.get("Object") or {}
         k8s_obj = obj.get("K8sObject") or {}
+        metadata = obj.get("Metadata") or {}
+        # kube-linter v0.8 puts the check ID at the top level of the report and
+        # the human-readable text under Diagnostic; the file is in Object.Metadata.
         findings.append(
             Finding(
                 scanner="kube-linter",
-                file="",
+                file=_norm_path(str(metadata.get("FilePath", ""))),
                 resource=str(k8s_obj.get("Name", "")),
                 line=None,
-                check=str(diagnostic.get("check", "")),
-                message=str(diagnostic.get("message", "")),
+                check=str(report.get("Check", "")),
+                message=str(diagnostic.get("Message", "")),
             )
         )
     return findings

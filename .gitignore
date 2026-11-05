@@ -1,5 +1,16 @@
 .venv/
 targets/
-results/
 __pycache__/
 *.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Raw scanner output is kept in the CI artifact; the curated result files that
+# back the README numbers (metrics.json, RESULTS.md, matches.csv, fixed-fails.csv)
+# are committed.
+results/checkov-*.json
+results/trivy-*.json
+results/kics-*.json
+results/kube-linter-*.json
+results/kics-tf/
+results/kics-k8s/

@@ -1,0 +1,785 @@
+{
+  "generated_at": "2026-11-05T03:22:49+00:00",
+  "terragoat_commit": "729f8da62c6a85ce4af5ad3d123de97776d954c4",
+  "items_total": 35,
+  "scanners": {
+    "checkov": {
+      "terraform": {
+        "detected": 18,
+        "total": 20,
+        "recall": 0.9,
+        "findings": 215
+      },
+      "kubernetes": {
+        "detected": 11,
+        "total": 15,
+        "recall": 0.7333,
+        "findings": 286
+      }
+    },
+    "trivy": {
+      "terraform": {
+        "detected": 0,
+        "total": 20,
+        "recall": 0.0,
+        "findings": 0
+      },
+      "kubernetes": {
+        "detected": 0,
+        "total": 15,
+        "recall": 0.0,
+        "findings": 0
+      }
+    },
+    "kics": {
+      "terraform": {
+        "detected": 0,
+        "total": 20,
+        "recall": 0.0,
+        "findings": 0
+      },
+      "kubernetes": {
+        "detected": 0,
+        "total": 15,
+        "recall": 0.0,
+        "findings": 0
+      }
+    },
+    "kube-linter": {
+      "terraform": {
+        "detected": 0,
+        "total": 20,
+        "recall": null,
+        "findings": 0
+      },
+      "kubernetes": {
+        "detected": 11,
+        "total": 15,
+        "recall": 0.7333,
+        "findings": 70
+      }
+    }
+  },
+  "overlap": {
+    "checkov": 21,
+    "checkov+kube-linter": 8,
+    "kube-linter": 3,
+    "none": 3
+  },
+  "items": [
+    {
+      "id": "TF01",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "category": "public_bucket",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF02",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "category": "unencrypted_storage",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF03",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "category": "missing_logging",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF04",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "category": "missing_versioning",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF05",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.financials",
+      "category": "unencrypted_storage",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF06",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.financials",
+      "category": "missing_logging",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF07",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.operations",
+      "category": "unencrypted_storage",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF08",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.operations",
+      "category": "missing_logging",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF09",
+      "target": "terraform",
+      "file": "terraform/aws/s3.tf",
+      "resource": "aws_s3_bucket.data_science",
+      "category": "unencrypted_storage",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF10",
+      "target": "terraform",
+      "file": "terraform/aws/ec2.tf",
+      "resource": "aws_instance.web_host",
+      "category": "plaintext_secret",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF11",
+      "target": "terraform",
+      "file": "terraform/aws/ec2.tf",
+      "resource": "aws_ebs_volume.web_host_storage",
+      "category": "unencrypted_storage",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF12",
+      "target": "terraform",
+      "file": "terraform/aws/ec2.tf",
+      "resource": "aws_security_group.web-node",
+      "category": "open_security_group",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF13",
+      "target": "terraform",
+      "file": "terraform/aws/ec2.tf",
+      "resource": "aws_security_group.web-node",
+      "category": "open_ssh",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF14",
+      "target": "terraform",
+      "file": "terraform/aws/iam.tf",
+      "resource": "aws_iam_access_key.user",
+      "category": "long_lived_access_key",
+      "found_by": [],
+      "found": false
+    },
+    {
+      "id": "TF15",
+      "target": "terraform",
+      "file": "terraform/aws/iam.tf",
+      "resource": "aws_iam_user_policy.userpolicy",
+      "category": "iam_wildcard",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF16",
+      "target": "terraform",
+      "file": "terraform/aws/rds.tf",
+      "resource": "aws_rds_cluster.app1-rds-cluster",
+      "category": "missing_backup",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF17",
+      "target": "terraform",
+      "file": "terraform/aws/es.tf",
+      "resource": "aws_elasticsearch_domain.monitoring-framework",
+      "category": "unencrypted_storage",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF18",
+      "target": "terraform",
+      "file": "terraform/aws/es.tf",
+      "resource": "aws_elasticsearch_domain_policy.monitoring-framework-policy",
+      "category": "public_resource_policy",
+      "found_by": [],
+      "found": false
+    },
+    {
+      "id": "TF19",
+      "target": "terraform",
+      "file": "terraform/aws/eks.tf",
+      "resource": "aws_eks_cluster.eks_cluster",
+      "category": "public_endpoint",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "TF20",
+      "target": "terraform",
+      "file": "terraform/aws/elb.tf",
+      "resource": "aws_elb.weblb",
+      "category": "missing_logging",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "K01",
+      "target": "kubernetes",
+      "file": "tests/k8s/01-privileged.yaml",
+      "resource": "privileged-pod",
+      "category": "privileged",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K02",
+      "target": "kubernetes",
+      "file": "tests/k8s/02-hostpath.yaml",
+      "resource": "hostpath-pod",
+      "category": "hostpath",
+      "found_by": [],
+      "found": false
+    },
+    {
+      "id": "K03",
+      "target": "kubernetes",
+      "file": "tests/k8s/03-hostnetwork.yaml",
+      "resource": "hostnetwork-pod",
+      "category": "hostnetwork",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K04",
+      "target": "kubernetes",
+      "file": "tests/k8s/04-latest-tag.yaml",
+      "resource": "latest-tag-pod",
+      "category": "latest_tag",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K05",
+      "target": "kubernetes",
+      "file": "tests/k8s/05-no-limits.yaml",
+      "resource": "no-limits-pod",
+      "category": "missing_limits",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K06",
+      "target": "kubernetes",
+      "file": "tests/k8s/06-root-user.yaml",
+      "resource": "root-user-pod",
+      "category": "root_user",
+      "found_by": [
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K07",
+      "target": "kubernetes",
+      "file": "tests/k8s/07-writable-rootfs.yaml",
+      "resource": "writable-rootfs-pod",
+      "category": "writable_rootfs",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K08",
+      "target": "kubernetes",
+      "file": "tests/k8s/08-added-capabilities.yaml",
+      "resource": "capabilities-pod",
+      "category": "added_capabilities",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K09",
+      "target": "kubernetes",
+      "file": "tests/k8s/09-no-seccomp.yaml",
+      "resource": "no-seccomp-pod",
+      "category": "missing_seccomp",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "K10",
+      "target": "kubernetes",
+      "file": "tests/k8s/10-automount-token.yaml",
+      "resource": "automount-token-pod",
+      "category": "service_account_token",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    },
+    {
+      "id": "K11",
+      "target": "kubernetes",
+      "file": "tests/k8s/11-privilege-escalation.yaml",
+      "resource": "privilege-escalation-pod",
+      "category": "privilege_escalation",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K12",
+      "target": "kubernetes",
+      "file": "tests/k8s/12-hostpid.yaml",
+      "resource": "hostpid-pod",
+      "category": "hostpid",
+      "found_by": [
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K13",
+      "target": "kubernetes",
+      "file": "tests/k8s/13-hostipc.yaml",
+      "resource": "hostipc-pod",
+      "category": "hostipc",
+      "found_by": [
+        "checkov",
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K14",
+      "target": "kubernetes",
+      "file": "tests/k8s/14-docker-sock.yaml",
+      "resource": "docker-sock-pod",
+      "category": "docker_sock",
+      "found_by": [
+        "kube-linter"
+      ],
+      "found": true
+    },
+    {
+      "id": "K15",
+      "target": "kubernetes",
+      "file": "tests/k8s/15-default-namespace.yaml",
+      "resource": "default-namespace-pod",
+      "category": "default_namespace",
+      "found_by": [
+        "checkov"
+      ],
+      "found": true
+    }
+  ],
+  "matches": [
+    {
+      "item": "TF01",
+      "scanner": "checkov",
+      "check": "Ensure that S3 bucket has a Public Access block",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
+      "item": "TF02",
+      "scanner": "checkov",
+      "check": "Ensure that S3 buckets are encrypted with KMS by default",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
+      "item": "TF03",
+      "scanner": "checkov",
+      "check": "Ensure the S3 bucket has access logging enabled",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
+      "item": "TF04",
+      "scanner": "checkov",
+      "check": "Ensure all data stored in the S3 bucket have versioning enabled",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.data",
+      "line": 1
+    },
+    {
+      "item": "TF05",
+      "scanner": "checkov",
+      "check": "Ensure that S3 buckets are encrypted with KMS by default",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.financials",
+      "line": 42
+    },
+    {
+      "item": "TF06",
+      "scanner": "checkov",
+      "check": "Ensure the S3 bucket has access logging enabled",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.financials",
+      "line": 42
+    },
+    {
+      "item": "TF07",
+      "scanner": "checkov",
+      "check": "Ensure that S3 buckets are encrypted with KMS by default",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.operations",
+      "line": 65
+    },
+    {
+      "item": "TF08",
+      "scanner": "checkov",
+      "check": "Ensure the S3 bucket has access logging enabled",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.operations",
+      "line": 65
+    },
+    {
+      "item": "TF09",
+      "scanner": "checkov",
+      "check": "Ensure that S3 buckets are encrypted with KMS by default",
+      "file": "/s3.tf",
+      "resource": "aws_s3_bucket.data_science",
+      "line": 89
+    },
+    {
+      "item": "TF10",
+      "scanner": "checkov",
+      "check": "Ensure no hard-coded secrets exist in EC2 user data",
+      "file": "/ec2.tf",
+      "resource": "aws_instance.web_host",
+      "line": 1
+    },
+    {
+      "item": "TF11",
+      "scanner": "checkov",
+      "check": "Ensure all data stored in the EBS is securely encrypted",
+      "file": "/ec2.tf",
+      "resource": "aws_ebs_volume.web_host_storage",
+      "line": 34
+    },
+    {
+      "item": "TF12",
+      "scanner": "checkov",
+      "check": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
+      "file": "/ec2.tf",
+      "resource": "aws_security_group.web-node",
+      "line": 77
+    },
+    {
+      "item": "TF13",
+      "scanner": "checkov",
+      "check": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22",
+      "file": "/ec2.tf",
+      "resource": "aws_security_group.web-node",
+      "line": 77
+    },
+    {
+      "item": "TF15",
+      "scanner": "checkov",
+      "check": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
+      "file": "/iam.tf",
+      "resource": "aws_iam_user_policy.userpolicy",
+      "line": 25
+    },
+    {
+      "item": "TF16",
+      "scanner": "checkov",
+      "check": "Ensure that RDS instances has backup policy",
+      "file": "/rds.tf",
+      "resource": "aws_rds_cluster.app1-rds-cluster",
+      "line": 1
+    },
+    {
+      "item": "TF17",
+      "scanner": "checkov",
+      "check": "Ensure all data stored in the Elasticsearch is securely encrypted at rest",
+      "file": "/es.tf",
+      "resource": "aws_elasticsearch_domain.monitoring-framework",
+      "line": 1
+    },
+    {
+      "item": "TF19",
+      "scanner": "checkov",
+      "check": "Ensure Amazon EKS public endpoint disabled",
+      "file": "/eks.tf",
+      "resource": "aws_eks_cluster.eks_cluster",
+      "line": 118
+    },
+    {
+      "item": "TF20",
+      "scanner": "checkov",
+      "check": "Ensure the ELB has access logging enabled",
+      "file": "/elb.tf",
+      "resource": "aws_elb.weblb",
+      "line": 2
+    },
+    {
+      "item": "K01",
+      "scanner": "checkov",
+      "check": "Container should not be privileged",
+      "file": "/tests/k8s/01-privileged.yaml",
+      "resource": "Pod.demo.privileged-pod",
+      "line": 1
+    },
+    {
+      "item": "K01",
+      "scanner": "kube-linter",
+      "check": "privilege-escalation-container",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/01-privileged.yaml",
+      "resource": "privileged-pod",
+      "line": null
+    },
+    {
+      "item": "K03",
+      "scanner": "checkov",
+      "check": "Containers should not share the host network namespace",
+      "file": "/tests/k8s/03-hostnetwork.yaml",
+      "resource": "Pod.demo.hostnetwork-pod",
+      "line": 1
+    },
+    {
+      "item": "K03",
+      "scanner": "kube-linter",
+      "check": "host-network",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/03-hostnetwork.yaml",
+      "resource": "hostnetwork-pod",
+      "line": null
+    },
+    {
+      "item": "K04",
+      "scanner": "checkov",
+      "check": "Image Tag should be fixed - not latest or blank",
+      "file": "/tests/k8s/04-latest-tag.yaml",
+      "resource": "Pod.demo.latest-tag-pod",
+      "line": 1
+    },
+    {
+      "item": "K04",
+      "scanner": "kube-linter",
+      "check": "latest-tag",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/04-latest-tag.yaml",
+      "resource": "latest-tag-pod",
+      "line": null
+    },
+    {
+      "item": "K05",
+      "scanner": "checkov",
+      "check": "CPU limits should be set",
+      "file": "/tests/k8s/05-no-limits.yaml",
+      "resource": "Pod.demo.no-limits-pod",
+      "line": 1
+    },
+    {
+      "item": "K05",
+      "scanner": "kube-linter",
+      "check": "unset-memory-requirements",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/05-no-limits.yaml",
+      "resource": "no-limits-pod",
+      "line": null
+    },
+    {
+      "item": "K06",
+      "scanner": "kube-linter",
+      "check": "run-as-non-root",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/06-root-user.yaml",
+      "resource": "root-user-pod",
+      "line": null
+    },
+    {
+      "item": "K07",
+      "scanner": "checkov",
+      "check": "Use read-only filesystem for containers where possible",
+      "file": "/tests/k8s/07-writable-rootfs.yaml",
+      "resource": "Pod.demo.writable-rootfs-pod",
+      "line": 1
+    },
+    {
+      "item": "K07",
+      "scanner": "kube-linter",
+      "check": "no-read-only-root-fs",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/07-writable-rootfs.yaml",
+      "resource": "writable-rootfs-pod",
+      "line": null
+    },
+    {
+      "item": "K08",
+      "scanner": "checkov",
+      "check": "Minimize the admission of containers with added capability",
+      "file": "/tests/k8s/08-added-capabilities.yaml",
+      "resource": "Pod.demo.capabilities-pod",
+      "line": 1
+    },
+    {
+      "item": "K08",
+      "scanner": "kube-linter",
+      "check": "drop-net-raw-capability",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/08-added-capabilities.yaml",
+      "resource": "capabilities-pod",
+      "line": null
+    },
+    {
+      "item": "K09",
+      "scanner": "checkov",
+      "check": "Ensure that the seccomp profile is set to docker/default or runtime/default",
+      "file": "/tests/k8s/09-no-seccomp.yaml",
+      "resource": "Pod.demo.no-seccomp-pod",
+      "line": 1
+    },
+    {
+      "item": "K10",
+      "scanner": "checkov",
+      "check": "Ensure that Service Account Tokens are only mounted where necessary",
+      "file": "/tests/k8s/10-automount-token.yaml",
+      "resource": "Pod.demo.automount-token-pod",
+      "line": 1
+    },
+    {
+      "item": "K11",
+      "scanner": "checkov",
+      "check": "Containers should not run with allowPrivilegeEscalation",
+      "file": "/tests/k8s/11-privilege-escalation.yaml",
+      "resource": "Pod.demo.privilege-escalation-pod",
+      "line": 1
+    },
+    {
+      "item": "K11",
+      "scanner": "kube-linter",
+      "check": "privilege-escalation-container",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/11-privilege-escalation.yaml",
+      "resource": "privilege-escalation-pod",
+      "line": null
+    },
+    {
+      "item": "K12",
+      "scanner": "kube-linter",
+      "check": "host-pid",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/12-hostpid.yaml",
+      "resource": "hostpid-pod",
+      "line": null
+    },
+    {
+      "item": "K13",
+      "scanner": "checkov",
+      "check": "Containers should not share the host IPC namespace",
+      "file": "/tests/k8s/13-hostipc.yaml",
+      "resource": "Pod.demo.hostipc-pod",
+      "line": 1
+    },
+    {
+      "item": "K13",
+      "scanner": "kube-linter",
+      "check": "host-ipc",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/13-hostipc.yaml",
+      "resource": "hostipc-pod",
+      "line": null
+    },
+    {
+      "item": "K14",
+      "scanner": "kube-linter",
+      "check": "docker-sock",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/14-docker-sock.yaml",
+      "resource": "docker-sock-pod",
+      "line": null
+    },
+    {
+      "item": "K15",
+      "scanner": "checkov",
+      "check": "The default namespace should not be used",
+      "file": "/tests/k8s/15-default-namespace.yaml",
+      "resource": "Pod.default.default-namespace-pod",
+      "line": 1
+    }
+  ],
+  "fixed": {
+    "high_before": null,
+    "high_after": 0,
+    "total_after": 188
+  }
+}

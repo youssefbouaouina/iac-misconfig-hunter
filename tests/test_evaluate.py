@@ -65,13 +65,20 @@ def test_kube_linter_adapter():
     data = {
         "Reports": [
             {
-                "Diagnostic": {"check": "privileged-container", "message": "privileged"},
-                "Object": {"K8sObject": {"Name": "privileged-pod"}},
+                "Check": "privileged-container",
+                "Diagnostic": {"Message": "container is privileged"},
+                "Object": {
+                    "Metadata": {"FilePath": "/src/tests/k8s/01-privileged.yaml"},
+                    "K8sObject": {"Name": "privileged-pod"},
+                },
             }
         ]
     }
     findings = scanner._kube_linter(data)
     assert findings[0].resource == "privileged-pod"
+    assert findings[0].check == "privileged-container"
+    assert findings[0].message == "container is privileged"
+    assert findings[0].file.endswith("01-privileged.yaml")
 
 
 def test_kics_adapter():
