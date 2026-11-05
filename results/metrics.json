@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T03:11:59+00:00",
+  "generated_at": "2026-11-05T03:27:17+00:00",
   "terragoat_commit": "729f8da62c6a85ce4af5ad3d123de97776d954c4",
   "items_total": 35,
   "scanners": {
@@ -33,16 +33,16 @@
     },
     "kics": {
       "terraform": {
-        "detected": 0,
+        "detected": 17,
         "total": 20,
-        "recall": 0.0,
-        "findings": 0
+        "recall": 0.85,
+        "findings": 155
       },
       "kubernetes": {
-        "detected": 0,
+        "detected": 12,
         "total": 15,
-        "recall": 0.0,
-        "findings": 0
+        "recall": 0.8,
+        "findings": 337
       }
     },
     "kube-linter": {
@@ -53,18 +53,23 @@
         "findings": 0
       },
       "kubernetes": {
-        "detected": 0,
+        "detected": 11,
         "total": 15,
-        "recall": 0.0,
-        "findings": 0
+        "recall": 0.7333,
+        "findings": 70
       }
     }
   },
   "overlap": {
-    "checkov+trivy": 26,
-    "trivy": 4,
-    "checkov": 3,
-    "none": 2
+    "checkov+trivy+kics": 16,
+    "checkov+trivy+kics+kube-linter": 8,
+    "checkov+kics": 3,
+    "checkov+trivy": 2,
+    "trivy+kube-linter": 2,
+    "kics": 1,
+    "none": 1,
+    "trivy": 1,
+    "trivy+kics+kube-linter": 1
   },
   "items": [
     {
@@ -87,7 +92,8 @@
       "category": "unencrypted_storage",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -99,7 +105,8 @@
       "category": "missing_logging",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -111,7 +118,8 @@
       "category": "missing_versioning",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -123,7 +131,8 @@
       "category": "unencrypted_storage",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -135,7 +144,8 @@
       "category": "missing_logging",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -147,7 +157,8 @@
       "category": "unencrypted_storage",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -159,7 +170,8 @@
       "category": "missing_logging",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -171,7 +183,8 @@
       "category": "unencrypted_storage",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -183,7 +196,8 @@
       "category": "plaintext_secret",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -195,7 +209,8 @@
       "category": "unencrypted_storage",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -206,7 +221,8 @@
       "resource": "aws_security_group.web-node",
       "category": "open_security_group",
       "found_by": [
-        "checkov"
+        "checkov",
+        "kics"
       ],
       "found": true
     },
@@ -218,7 +234,8 @@
       "category": "open_ssh",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -238,7 +255,8 @@
       "resource": "aws_iam_user_policy.userpolicy",
       "category": "iam_wildcard",
       "found_by": [
-        "checkov"
+        "checkov",
+        "kics"
       ],
       "found": true
     },
@@ -262,7 +280,8 @@
       "category": "unencrypted_storage",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -272,8 +291,10 @@
       "file": "terraform/aws/es.tf",
       "resource": "aws_elasticsearch_domain_policy.monitoring-framework-policy",
       "category": "public_resource_policy",
-      "found_by": [],
-      "found": false
+      "found_by": [
+        "kics"
+      ],
+      "found": true
     },
     {
       "id": "TF19",
@@ -283,7 +304,8 @@
       "category": "public_endpoint",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -294,7 +316,8 @@
       "resource": "aws_elb.weblb",
       "category": "missing_logging",
       "found_by": [
-        "checkov"
+        "checkov",
+        "kics"
       ],
       "found": true
     },
@@ -306,7 +329,9 @@
       "category": "privileged",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -329,7 +354,9 @@
       "category": "hostnetwork",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -341,7 +368,9 @@
       "category": "latest_tag",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -353,7 +382,9 @@
       "category": "missing_limits",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -364,7 +395,8 @@
       "resource": "root-user-pod",
       "category": "root_user",
       "found_by": [
-        "trivy"
+        "trivy",
+        "kube-linter"
       ],
       "found": true
     },
@@ -376,7 +408,9 @@
       "category": "writable_rootfs",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -388,7 +422,9 @@
       "category": "added_capabilities",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -400,7 +436,8 @@
       "category": "missing_seccomp",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -412,7 +449,8 @@
       "category": "service_account_token",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     },
@@ -424,7 +462,9 @@
       "category": "privilege_escalation",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -435,7 +475,9 @@
       "resource": "hostpid-pod",
       "category": "hostpid",
       "found_by": [
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -447,7 +489,9 @@
       "category": "hostipc",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics",
+        "kube-linter"
       ],
       "found": true
     },
@@ -458,7 +502,8 @@
       "resource": "docker-sock-pod",
       "category": "docker_sock",
       "found_by": [
-        "trivy"
+        "trivy",
+        "kube-linter"
       ],
       "found": true
     },
@@ -470,7 +515,8 @@
       "category": "default_namespace",
       "found_by": [
         "checkov",
-        "trivy"
+        "trivy",
+        "kics"
       ],
       "found": true
     }
@@ -509,6 +555,14 @@
       "line": 1
     },
     {
+      "item": "TF02",
+      "scanner": "kics",
+      "check": "S3 Bucket Object Not Encrypted",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
+      "line": 23
+    },
+    {
       "item": "TF03",
       "scanner": "checkov",
       "check": "Ensure the S3 bucket has access logging enabled",
@@ -523,6 +577,14 @@
       "file": "s3.tf",
       "resource": "aws_s3_bucket.data",
       "line": 1
+    },
+    {
+      "item": "TF03",
+      "scanner": "kics",
+      "check": "S3 Bucket Logging Disabled",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
+      "line": 42
     },
     {
       "item": "TF04",
@@ -541,6 +603,14 @@
       "line": 1
     },
     {
+      "item": "TF04",
+      "scanner": "kics",
+      "check": "S3 Bucket Without Versioning",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
+      "line": 42
+    },
+    {
       "item": "TF05",
       "scanner": "checkov",
       "check": "Ensure that S3 buckets are encrypted with KMS by default",
@@ -557,6 +627,14 @@
       "line": 42
     },
     {
+      "item": "TF05",
+      "scanner": "kics",
+      "check": "S3 Bucket Object Not Encrypted",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
+      "line": 23
+    },
+    {
       "item": "TF06",
       "scanner": "checkov",
       "check": "Ensure the S3 bucket has access logging enabled",
@@ -570,6 +648,14 @@
       "check": "S3 Bucket Logging",
       "file": "s3.tf",
       "resource": "aws_s3_bucket.financials",
+      "line": 42
+    },
+    {
+      "item": "TF06",
+      "scanner": "kics",
+      "check": "S3 Bucket Logging Disabled",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
       "line": 42
     },
     {
@@ -589,6 +675,14 @@
       "line": 65
     },
     {
+      "item": "TF07",
+      "scanner": "kics",
+      "check": "S3 Bucket Object Not Encrypted",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
+      "line": 23
+    },
+    {
       "item": "TF08",
       "scanner": "checkov",
       "check": "Ensure the S3 bucket has access logging enabled",
@@ -605,6 +699,14 @@
       "line": 65
     },
     {
+      "item": "TF08",
+      "scanner": "kics",
+      "check": "S3 Bucket Logging Disabled",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
+      "line": 42
+    },
+    {
       "item": "TF09",
       "scanner": "checkov",
       "check": "Ensure that S3 buckets are encrypted with KMS by default",
@@ -619,6 +721,14 @@
       "file": "s3.tf",
       "resource": "aws_s3_bucket.data_science",
       "line": 89
+    },
+    {
+      "item": "TF09",
+      "scanner": "kics",
+      "check": "S3 Bucket Object Not Encrypted",
+      "file": "../../src/targets/terragoat/terraform/aws/s3.tf",
+      "resource": "",
+      "line": 23
     },
     {
       "item": "TF10",
@@ -634,6 +744,14 @@
       "check": "User data for EC2 instances must not contain sensitive AWS keys",
       "file": "ec2.tf",
       "resource": "aws_instance.web_host",
+      "line": 9
+    },
+    {
+      "item": "TF10",
+      "scanner": "kics",
+      "check": "Hardcoded AWS Access Key",
+      "file": "../../src/targets/terragoat/terraform/aws/ec2.tf",
+      "resource": "",
       "line": 9
     },
     {
@@ -653,12 +771,28 @@
       "line": 34
     },
     {
+      "item": "TF11",
+      "scanner": "kics",
+      "check": "EBS Volume Encryption Disabled",
+      "file": "../../src/targets/terragoat/terraform/aws/ec2.tf",
+      "resource": "",
+      "line": 34
+    },
+    {
       "item": "TF12",
       "scanner": "checkov",
       "check": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
       "file": "/ec2.tf",
       "resource": "aws_security_group.web-node",
       "line": 77
+    },
+    {
+      "item": "TF12",
+      "scanner": "kics",
+      "check": "EC2 Instance Has Public IP",
+      "file": "../../src/targets/terragoat/terraform/aws/ec2.tf",
+      "resource": "",
+      "line": 1
     },
     {
       "item": "TF13",
@@ -677,12 +811,28 @@
       "line": 94
     },
     {
+      "item": "TF13",
+      "scanner": "kics",
+      "check": "Security Group With Unrestricted Access To SSH",
+      "file": "../../src/targets/terragoat/terraform/aws/ec2.tf",
+      "resource": "",
+      "line": 90
+    },
+    {
       "item": "TF15",
       "scanner": "checkov",
       "check": "Ensure no IAM policies documents allow \"*\" as a statement's resource for restrictable actions",
       "file": "/iam.tf",
       "resource": "aws_iam_user_policy.userpolicy",
       "line": 25
+    },
+    {
+      "item": "TF15",
+      "scanner": "kics",
+      "check": "IAM policy allows for data exfiltration",
+      "file": "../../src/targets/terragoat/terraform/aws/iam.tf",
+      "resource": "",
+      "line": 29
     },
     {
       "item": "TF16",
@@ -717,6 +867,22 @@
       "line": 1
     },
     {
+      "item": "TF17",
+      "scanner": "kics",
+      "check": "ElasticSearch Not Encrypted At Rest",
+      "file": "../../src/targets/terragoat/terraform/aws/es.tf",
+      "resource": "",
+      "line": 1
+    },
+    {
+      "item": "TF18",
+      "scanner": "kics",
+      "check": "IAM Policy Grants Full Permissions",
+      "file": "../../src/targets/terragoat/terraform/aws/es.tf",
+      "resource": "",
+      "line": 30
+    },
+    {
       "item": "TF19",
       "scanner": "checkov",
       "check": "Ensure Amazon EKS public endpoint not accessible to 0.0.0.0/0",
@@ -733,11 +899,27 @@
       "line": 122
     },
     {
+      "item": "TF19",
+      "scanner": "kics",
+      "check": "VPC Subnet Assigns Public IP",
+      "file": "../../src/targets/terragoat/terraform/aws/eks.tf",
+      "resource": "",
+      "line": 94
+    },
+    {
       "item": "TF20",
       "scanner": "checkov",
       "check": "Ensure the ELB has access logging enabled",
       "file": "/elb.tf",
       "resource": "aws_elb.weblb",
+      "line": 2
+    },
+    {
+      "item": "TF20",
+      "scanner": "kics",
+      "check": "ELB Access Log Disabled",
+      "file": "../../src/targets/terragoat/terraform/aws/elb.tf",
+      "resource": "",
       "line": 2
     },
     {
@@ -755,6 +937,22 @@
       "file": "01-privileged.yaml",
       "resource": "",
       "line": 8
+    },
+    {
+      "item": "K01",
+      "scanner": "kics",
+      "check": "Container Is Privileged",
+      "file": "../../src/tests/k8s/01-privileged.yaml",
+      "resource": "",
+      "line": 11
+    },
+    {
+      "item": "K01",
+      "scanner": "kube-linter",
+      "check": "privilege-escalation-container",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/01-privileged.yaml",
+      "resource": "privileged-pod",
+      "line": null
     },
     {
       "item": "K02",
@@ -781,6 +979,22 @@
       "line": 9
     },
     {
+      "item": "K03",
+      "scanner": "kics",
+      "check": "Shared Host Network Namespace",
+      "file": "../../src/tests/k8s/03-hostnetwork.yaml",
+      "resource": "",
+      "line": 7
+    },
+    {
+      "item": "K03",
+      "scanner": "kube-linter",
+      "check": "host-network",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/03-hostnetwork.yaml",
+      "resource": "hostnetwork-pod",
+      "line": null
+    },
+    {
       "item": "K04",
       "scanner": "checkov",
       "check": "Image Tag should be fixed - not latest or blank",
@@ -795,6 +1009,22 @@
       "file": "04-latest-tag.yaml",
       "resource": "",
       "line": 8
+    },
+    {
+      "item": "K04",
+      "scanner": "kics",
+      "check": "Invalid Image Tag",
+      "file": "../../src/tests/k8s/04-latest-tag.yaml",
+      "resource": "",
+      "line": 9
+    },
+    {
+      "item": "K04",
+      "scanner": "kube-linter",
+      "check": "latest-tag",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/04-latest-tag.yaml",
+      "resource": "latest-tag-pod",
+      "line": null
     },
     {
       "item": "K05",
@@ -813,12 +1043,36 @@
       "line": 8
     },
     {
+      "item": "K05",
+      "scanner": "kics",
+      "check": "Memory Limits Not Defined",
+      "file": "../../src/tests/k8s/05-no-limits.yaml",
+      "resource": "",
+      "line": 8
+    },
+    {
+      "item": "K05",
+      "scanner": "kube-linter",
+      "check": "unset-memory-requirements",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/05-no-limits.yaml",
+      "resource": "no-limits-pod",
+      "line": null
+    },
+    {
       "item": "K06",
       "scanner": "trivy",
       "check": "Runs as root user",
       "file": "06-root-user.yaml",
       "resource": "",
       "line": 8
+    },
+    {
+      "item": "K06",
+      "scanner": "kube-linter",
+      "check": "run-as-non-root",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/06-root-user.yaml",
+      "resource": "root-user-pod",
+      "line": null
     },
     {
       "item": "K07",
@@ -837,6 +1091,22 @@
       "line": 8
     },
     {
+      "item": "K07",
+      "scanner": "kics",
+      "check": "Root Container Not Mounted Read-only",
+      "file": "../../src/tests/k8s/07-writable-rootfs.yaml",
+      "resource": "",
+      "line": 11
+    },
+    {
+      "item": "K07",
+      "scanner": "kube-linter",
+      "check": "no-read-only-root-fs",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/07-writable-rootfs.yaml",
+      "resource": "writable-rootfs-pod",
+      "line": null
+    },
+    {
       "item": "K08",
       "scanner": "checkov",
       "check": "Minimize the admission of containers with the NET_RAW capability",
@@ -853,6 +1123,22 @@
       "line": 8
     },
     {
+      "item": "K08",
+      "scanner": "kics",
+      "check": "Containers With Sys Admin Capabilities",
+      "file": "../../src/tests/k8s/08-added-capabilities.yaml",
+      "resource": "",
+      "line": 12
+    },
+    {
+      "item": "K08",
+      "scanner": "kube-linter",
+      "check": "drop-net-raw-capability",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/08-added-capabilities.yaml",
+      "resource": "capabilities-pod",
+      "line": null
+    },
+    {
       "item": "K09",
       "scanner": "checkov",
       "check": "Ensure that the seccomp profile is set to docker/default or runtime/default",
@@ -865,6 +1151,14 @@
       "scanner": "trivy",
       "check": "Can elevate its own privileges",
       "file": "09-no-seccomp.yaml",
+      "resource": "",
+      "line": 8
+    },
+    {
+      "item": "K09",
+      "scanner": "kics",
+      "check": "Seccomp Profile Is Not Configured",
+      "file": "../../src/tests/k8s/09-no-seccomp.yaml",
       "resource": "",
       "line": 8
     },
@@ -885,6 +1179,14 @@
       "line": 9
     },
     {
+      "item": "K10",
+      "scanner": "kics",
+      "check": "Service Account Name Undefined Or Empty",
+      "file": "../../src/tests/k8s/10-automount-token.yaml",
+      "resource": "",
+      "line": 6
+    },
+    {
       "item": "K11",
       "scanner": "checkov",
       "check": "Containers should not run with allowPrivilegeEscalation",
@@ -901,12 +1203,44 @@
       "line": 8
     },
     {
+      "item": "K11",
+      "scanner": "kics",
+      "check": "Privilege Escalation Allowed",
+      "file": "../../src/tests/k8s/11-privilege-escalation.yaml",
+      "resource": "",
+      "line": 11
+    },
+    {
+      "item": "K11",
+      "scanner": "kube-linter",
+      "check": "privilege-escalation-container",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/11-privilege-escalation.yaml",
+      "resource": "privilege-escalation-pod",
+      "line": null
+    },
+    {
       "item": "K12",
       "scanner": "trivy",
       "check": "Can elevate its own privileges",
       "file": "12-hostpid.yaml",
       "resource": "",
       "line": 9
+    },
+    {
+      "item": "K12",
+      "scanner": "kics",
+      "check": "Shared Host PID Namespace",
+      "file": "../../src/tests/k8s/12-hostpid.yaml",
+      "resource": "",
+      "line": 7
+    },
+    {
+      "item": "K12",
+      "scanner": "kube-linter",
+      "check": "host-pid",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/12-hostpid.yaml",
+      "resource": "hostpid-pod",
+      "line": null
     },
     {
       "item": "K13",
@@ -925,12 +1259,36 @@
       "line": 9
     },
     {
+      "item": "K13",
+      "scanner": "kics",
+      "check": "Shared Host IPC Namespace",
+      "file": "../../src/tests/k8s/13-hostipc.yaml",
+      "resource": "",
+      "line": 7
+    },
+    {
+      "item": "K13",
+      "scanner": "kube-linter",
+      "check": "host-ipc",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/13-hostipc.yaml",
+      "resource": "hostipc-pod",
+      "line": null
+    },
+    {
       "item": "K14",
       "scanner": "trivy",
       "check": "hostPath volume mounted with docker.sock",
       "file": "14-docker-sock.yaml",
       "resource": "",
       "line": 6
+    },
+    {
+      "item": "K14",
+      "scanner": "kube-linter",
+      "check": "docker-sock",
+      "file": "/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/14-docker-sock.yaml",
+      "resource": "docker-sock-pod",
+      "line": null
     },
     {
       "item": "K15",
@@ -947,6 +1305,14 @@
       "file": "15-default-namespace.yaml",
       "resource": "",
       "line": 7
+    },
+    {
+      "item": "K15",
+      "scanner": "kics",
+      "check": "Using Unrecommended Namespace",
+      "file": "../../src/tests/k8s/15-default-namespace.yaml",
+      "resource": "",
+      "line": 4
     }
   ],
   "fixed": {

@@ -3,58 +3,98 @@ TF01,checkov,Ensure that S3 bucket has a Public Access block,/s3.tf,aws_s3_bucke
 TF01,trivy,S3 Access block should block public ACL,s3.tf,aws_s3_bucket.data,1
 TF02,checkov,Ensure that S3 buckets are encrypted with KMS by default,/s3.tf,aws_s3_bucket.data,1
 TF02,trivy,S3 encryption should use Customer Managed Keys,s3.tf,aws_s3_bucket.data,1
+TF02,kics,S3 Bucket Object Not Encrypted,../../src/targets/terragoat/terraform/aws/s3.tf,,23
 TF03,checkov,Ensure the S3 bucket has access logging enabled,/s3.tf,aws_s3_bucket.data,1
 TF03,trivy,S3 Bucket Logging,s3.tf,aws_s3_bucket.data,1
+TF03,kics,S3 Bucket Logging Disabled,../../src/targets/terragoat/terraform/aws/s3.tf,,42
 TF04,checkov,Ensure all data stored in the S3 bucket have versioning enabled,/s3.tf,aws_s3_bucket.data,1
 TF04,trivy,S3 Data should be versioned,s3.tf,aws_s3_bucket.data,1
+TF04,kics,S3 Bucket Without Versioning,../../src/targets/terragoat/terraform/aws/s3.tf,,42
 TF05,checkov,Ensure that S3 buckets are encrypted with KMS by default,/s3.tf,aws_s3_bucket.financials,42
 TF05,trivy,S3 encryption should use Customer Managed Keys,s3.tf,aws_s3_bucket.financials,42
+TF05,kics,S3 Bucket Object Not Encrypted,../../src/targets/terragoat/terraform/aws/s3.tf,,23
 TF06,checkov,Ensure the S3 bucket has access logging enabled,/s3.tf,aws_s3_bucket.financials,42
 TF06,trivy,S3 Bucket Logging,s3.tf,aws_s3_bucket.financials,42
+TF06,kics,S3 Bucket Logging Disabled,../../src/targets/terragoat/terraform/aws/s3.tf,,42
 TF07,checkov,Ensure that S3 buckets are encrypted with KMS by default,/s3.tf,aws_s3_bucket.operations,65
 TF07,trivy,S3 encryption should use Customer Managed Keys,s3.tf,aws_s3_bucket.operations,65
+TF07,kics,S3 Bucket Object Not Encrypted,../../src/targets/terragoat/terraform/aws/s3.tf,,23
 TF08,checkov,Ensure the S3 bucket has access logging enabled,/s3.tf,aws_s3_bucket.operations,65
 TF08,trivy,S3 Bucket Logging,s3.tf,aws_s3_bucket.operations,65
+TF08,kics,S3 Bucket Logging Disabled,../../src/targets/terragoat/terraform/aws/s3.tf,,42
 TF09,checkov,Ensure that S3 buckets are encrypted with KMS by default,/s3.tf,aws_s3_bucket.data_science,89
 TF09,trivy,S3 encryption should use Customer Managed Keys,s3.tf,aws_s3_bucket.data_science,89
+TF09,kics,S3 Bucket Object Not Encrypted,../../src/targets/terragoat/terraform/aws/s3.tf,,23
 TF10,checkov,Ensure no hard-coded secrets exist in EC2 user data,/ec2.tf,aws_instance.web_host,1
 TF10,trivy,User data for EC2 instances must not contain sensitive AWS keys,ec2.tf,aws_instance.web_host,9
+TF10,kics,Hardcoded AWS Access Key,../../src/targets/terragoat/terraform/aws/ec2.tf,,9
 TF11,checkov,Ensure EBS Volume is encrypted by KMS using a customer managed Key (CMK),/ec2.tf,aws_ebs_volume.web_host_storage,34
 TF11,trivy,EBS volumes must be encrypted,ec2.tf,aws_ebs_volume.web_host_storage,34
+TF11,kics,EBS Volume Encryption Disabled,../../src/targets/terragoat/terraform/aws/ec2.tf,,34
 TF12,checkov,Ensure no security groups allow egress from 0.0.0.0:0 to port -1,/ec2.tf,aws_security_group.web-node,77
+TF12,kics,EC2 Instance Has Public IP,../../src/targets/terragoat/terraform/aws/ec2.tf,,1
 TF13,checkov,Ensure no security groups allow ingress from 0.0.0.0:0 to port 22,/ec2.tf,aws_security_group.web-node,77
 TF13,trivy,Security groups should not allow unrestricted ingress to SSH or RDP from any IP address.,ec2.tf,aws_security_group.web-node,94
+TF13,kics,Security Group With Unrestricted Access To SSH,../../src/targets/terragoat/terraform/aws/ec2.tf,,90
 TF15,checkov,"Ensure no IAM policies documents allow ""*"" as a statement's resource for restrictable actions",/iam.tf,aws_iam_user_policy.userpolicy,25
+TF15,kics,IAM policy allows for data exfiltration,../../src/targets/terragoat/terraform/aws/iam.tf,,29
 TF16,checkov,Ensure that RDS instances has backup policy,/rds.tf,aws_rds_cluster.app1-rds-cluster,1
 TF16,trivy,RDS Cluster and RDS instance should have backup retention longer than default 1 day,rds.tf,aws_rds_cluster.app1-rds-cluster,4
 TF17,checkov,Ensure all data stored in the Elasticsearch is encrypted with a CMK,/es.tf,aws_elasticsearch_domain.monitoring-framework,1
 TF17,trivy,Elasticsearch domain uses plaintext traffic for node to node communication.,es.tf,aws_elasticsearch_domain.monitoring-framework,1
+TF17,kics,ElasticSearch Not Encrypted At Rest,../../src/targets/terragoat/terraform/aws/es.tf,,1
+TF18,kics,IAM Policy Grants Full Permissions,../../src/targets/terragoat/terraform/aws/es.tf,,30
 TF19,checkov,Ensure Amazon EKS public endpoint not accessible to 0.0.0.0/0,/eks.tf,aws_eks_cluster.eks_cluster,118
 TF19,trivy,EKS Clusters should have the public access disabled,eks.tf,aws_eks_cluster.eks_cluster,122
+TF19,kics,VPC Subnet Assigns Public IP,../../src/targets/terragoat/terraform/aws/eks.tf,,94
 TF20,checkov,Ensure the ELB has access logging enabled,/elb.tf,aws_elb.weblb,2
+TF20,kics,ELB Access Log Disabled,../../src/targets/terragoat/terraform/aws/elb.tf,,2
 K01,checkov,Container should not be privileged,/tests/k8s/01-privileged.yaml,Pod.demo.privileged-pod,1
 K01,trivy,Can elevate its own privileges,01-privileged.yaml,,8
+K01,kics,Container Is Privileged,../../src/tests/k8s/01-privileged.yaml,,11
+K01,kube-linter,privilege-escalation-container,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/01-privileged.yaml,privileged-pod,
 K02,trivy,Can elevate its own privileges,02-hostpath.yaml,,8
 K03,checkov,Containers should not share the host network namespace,/tests/k8s/03-hostnetwork.yaml,Pod.demo.hostnetwork-pod,1
 K03,trivy,Can elevate its own privileges,03-hostnetwork.yaml,,9
+K03,kics,Shared Host Network Namespace,../../src/tests/k8s/03-hostnetwork.yaml,,7
+K03,kube-linter,host-network,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/03-hostnetwork.yaml,hostnetwork-pod,
 K04,checkov,Image Tag should be fixed - not latest or blank,/tests/k8s/04-latest-tag.yaml,Pod.demo.latest-tag-pod,1
 K04,trivy,Can elevate its own privileges,04-latest-tag.yaml,,8
+K04,kics,Invalid Image Tag,../../src/tests/k8s/04-latest-tag.yaml,,9
+K04,kube-linter,latest-tag,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/04-latest-tag.yaml,latest-tag-pod,
 K05,checkov,CPU limits should be set,/tests/k8s/05-no-limits.yaml,Pod.demo.no-limits-pod,1
 K05,trivy,Can elevate its own privileges,05-no-limits.yaml,,8
+K05,kics,Memory Limits Not Defined,../../src/tests/k8s/05-no-limits.yaml,,8
+K05,kube-linter,unset-memory-requirements,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/05-no-limits.yaml,no-limits-pod,
 K06,trivy,Runs as root user,06-root-user.yaml,,8
+K06,kube-linter,run-as-non-root,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/06-root-user.yaml,root-user-pod,
 K07,checkov,Use read-only filesystem for containers where possible,/tests/k8s/07-writable-rootfs.yaml,Pod.demo.writable-rootfs-pod,1
 K07,trivy,Root file system is not read-only,07-writable-rootfs.yaml,,8
+K07,kics,Root Container Not Mounted Read-only,../../src/tests/k8s/07-writable-rootfs.yaml,,11
+K07,kube-linter,no-read-only-root-fs,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/07-writable-rootfs.yaml,writable-rootfs-pod,
 K08,checkov,Minimize the admission of containers with the NET_RAW capability,/tests/k8s/08-added-capabilities.yaml,Pod.demo.capabilities-pod,1
 K08,trivy,Can elevate its own privileges,08-added-capabilities.yaml,,8
+K08,kics,Containers With Sys Admin Capabilities,../../src/tests/k8s/08-added-capabilities.yaml,,12
+K08,kube-linter,drop-net-raw-capability,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/08-added-capabilities.yaml,capabilities-pod,
 K09,checkov,Ensure that the seccomp profile is set to docker/default or runtime/default,/tests/k8s/09-no-seccomp.yaml,Pod.demo.no-seccomp-pod,1
 K09,trivy,Can elevate its own privileges,09-no-seccomp.yaml,,8
+K09,kics,Seccomp Profile Is Not Configured,../../src/tests/k8s/09-no-seccomp.yaml,,8
 K10,checkov,Ensure that Service Account Tokens are only mounted where necessary,/tests/k8s/10-automount-token.yaml,Pod.demo.automount-token-pod,1
 K10,trivy,Can elevate its own privileges,10-automount-token.yaml,,9
+K10,kics,Service Account Name Undefined Or Empty,../../src/tests/k8s/10-automount-token.yaml,,6
 K11,checkov,Containers should not run with allowPrivilegeEscalation,/tests/k8s/11-privilege-escalation.yaml,Pod.demo.privilege-escalation-pod,1
 K11,trivy,Can elevate its own privileges,11-privilege-escalation.yaml,,8
+K11,kics,Privilege Escalation Allowed,../../src/tests/k8s/11-privilege-escalation.yaml,,11
+K11,kube-linter,privilege-escalation-container,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/11-privilege-escalation.yaml,privilege-escalation-pod,
 K12,trivy,Can elevate its own privileges,12-hostpid.yaml,,9
+K12,kics,Shared Host PID Namespace,../../src/tests/k8s/12-hostpid.yaml,,7
+K12,kube-linter,host-pid,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/12-hostpid.yaml,hostpid-pod,
 K13,checkov,Containers should not share the host IPC namespace,/tests/k8s/13-hostipc.yaml,Pod.demo.hostipc-pod,1
 K13,trivy,Can elevate its own privileges,13-hostipc.yaml,,9
+K13,kics,Shared Host IPC Namespace,../../src/tests/k8s/13-hostipc.yaml,,7
+K13,kube-linter,host-ipc,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/13-hostipc.yaml,hostipc-pod,
 K14,trivy,hostPath volume mounted with docker.sock,14-docker-sock.yaml,,6
+K14,kube-linter,docker-sock,/home/runner/work/iac-misconfig-hunter/iac-misconfig-hunter/tests/k8s/14-docker-sock.yaml,docker-sock-pod,
 K15,checkov,The default namespace should not be used,/tests/k8s/15-default-namespace.yaml,Pod.default.default-namespace-pod,1
 K15,trivy,Can elevate its own privileges,15-default-namespace.yaml,,7
+K15,kics,Using Unrecommended Namespace,../../src/tests/k8s/15-default-namespace.yaml,,4

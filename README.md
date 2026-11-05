@@ -1,5 +1,9 @@
 ﻿# iac-misconfig-hunter
 
+[![CI](https://github.com/youssefbouaouina/iac-misconfig-hunter/actions/workflows/ci.yml/badge.svg)](https://github.com/youssefbouaouina/iac-misconfig-hunter/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python 3.12](https://img.shields.io/badge/python-3.12-blue)
+
 How well do Checkov, Trivy, KICS and kube-linter find **35 known misconfigurations** in
 deliberately vulnerable Terraform and Kubernetes code? This repository measures it, then fixes
 the findings and enforces the fix in CI.
@@ -35,7 +39,24 @@ flowchart LR
 
 ## Results
 
-See [`results/RESULTS.md`](results/RESULTS.md) and [`results/metrics.json`](results/metrics.json).
+CI run #5, 2026-11-05, from [`results/metrics.json`](results/metrics.json). TerraGoat pinned at
+`729f8da62c6a85ce4af5ad3d123de97776d954c4`.
+
+| Scanner | Terraform (20) | Kubernetes (15) | Findings (TF / K8s) |
+|---|---|---|---|
+| Checkov | 18/20 (90.0%) | 11/15 (73.3%) | 215 / 286 |
+| Trivy | 15/20 (75.0%) | 15/15 (100.0%) | 115 / 247 |
+| KICS | 17/20 (85.0%) | 12/15 (80.0%) | 155 / 337 |
+| kube-linter | n/a | 11/15 (73.3%) | 0 / 70 |
+
+- **34/35** items are found by at least one scanner; one Terraform item (a long-lived IAM access
+  key, `TF14`) is missed by all four.
+- All four scanners agree on **8** Kubernetes items. The full per-item matrix is in
+  [`results/RESULTS.md`](results/RESULTS.md); every match is traceable in `results/matches.csv`.
+- On the fixed Terraform module, **14/14 targeted findings are gone** and Checkov's total drops
+  from **215 to 188**. CI fails if either number regresses.
+- The comparison is recall on the same 35 items, not raw finding counts: the scanners have
+  different rule granularity, so their totals are not directly comparable.
 
 ## Run
 
